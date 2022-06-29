@@ -2,11 +2,9 @@ import React, { useState } from 'react';
 import useCategories from '../hooks/useCategories';
 import { NavLink, Outlet } from 'react-router-dom';
 
-function Nav() {
-  const { error, data, loading } = useCategories();
+function Nav({ setCategory, currency, setCurrency }) {
   const [dropdown, setDropdown] = useState(false);
-  const [category, setCategory] = useState(0);
-  const [currency, setCurrency] = useState(0);
+  const { error, data, loading } = useCategories();
 
   if (error) {
     return <h2>something went wrong</h2>;
@@ -15,10 +13,8 @@ function Nav() {
     return <h2>loading...</h2>;
   }
 
-  console.log(data);
   const categories = data.categories;
   const currencies = data.currencies;
-  console.log(currencies);
 
   return (
     <nav>
@@ -28,11 +24,15 @@ function Nav() {
             return (
               <NavLink
                 to={'/'}
+                key={index}
                 className={({ isActive }) =>
                   isActive ? 'link active' : 'link'
                 }
               >
-                <button key={index} onClick={() => setCategory(0)}>
+                <button
+                  className="category-btn"
+                  onClick={() => setCategory(index)}
+                >
                   {category.name}
                 </button>
               </NavLink>
@@ -52,12 +52,14 @@ function Nav() {
             }
           >
             {currencies.map((currency, index) => {
-              console.log(currency, index);
               return (
                 <button
                   className="currency-btn"
                   key={index}
-                  onClick={() => setCurrency(index)}
+                  onClick={() => {
+                    setCurrency(index);
+                    setDropdown(false);
+                  }}
                 >
                   {currency.symbol} {currency.label}
                   <span></span>

@@ -1,11 +1,43 @@
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+.categories {
+  padding-left: 5rem;
+}
+
+.container img {
+  max-width: 30vw;
+  height: 100vh;
+}
+
+.category-name {
+  padding-left: 2.5rem;
+  text-transform: capitalize;
+  cursor: pointer;
+}
 .link {
   padding-right: 5pt;
+}
+
+.category-btn:hover {
+  color: #5ece7b;
+  text-decoration: underline;
+}
+
+.category-btn {
   text-decoration: none;
-  color: gray;
+  border: none;
+  background: none;
+  font-size: 120%;
+  text-transform: capitalize;
+  cursor: pointer;
 }
 
 .active {
-  color: #1d3767;
+  color: #1d1f22;
 }
 
 .nav {
@@ -16,6 +48,7 @@
 }
 
 .currency-changer {
+  color: #1d1f22;
   background: none;
   border: none;
   text-decoration: none;
@@ -51,6 +84,38 @@
   background: none;
 }
 
-.currency-btn li {
-  display: inline;
+.attribute-btn {
+  display: flex;
+  align-items: baseline;
+  padding: 0.5rem;
+  gap: 1rem;
+}
+
+.product {
+  display: flex;
+  padding-top: 5rem;
+  padding-left: 3rem;
+}
+
+.product-image {
+  width: 50rem;
+}
+
+.product-content {
+  margin-left: 2rem;
+}
+
+.image-container {
+  width: 7rem;
+}
+
+.image-container img {
+  width: 5rem;
+  padding-left: 1rem;
+  cursor: pointer;
+}
+
+.img-btn {
+  background: none;
+  border: none;
 }
