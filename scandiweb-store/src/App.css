@@ -1,38 +1,56 @@
-.App {
-  text-align: center;
+.link {
+  padding-right: 5pt;
+  text-decoration: none;
+  color: gray;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.active {
+  color: #1d3767;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.nav {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: baseline;
+  padding: 0.5rem;
+  gap: 1rem;
 }
 
-.App-link {
-  color: #61dafb;
+.currency-changer {
+  background: none;
+  border: none;
+  text-decoration: none;
+  cursor: pointer;
+  padding: 0;
+  font-size: 120%;
+  text-decoration: solid;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.currency-container {
+  position: relative;
+  left: 60%;
+  top: 0.5vh;
+}
+
+.dropdown-menu {
+  position: absolute;
+  left: 0;
+  top: calc(100% + 0.25rem);
+  left: calc(100% - 2.37rem);
+  background-color: white;
+  padding: 0.75rem;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.1);
+  display: none;
+}
+
+.display-block {
+  display: block;
+}
+
+.currency-btn {
+  border: none;
+  background: none;
+}
+
+.currency-btn li {
+  display: inline;
 }
