@@ -18,7 +18,6 @@ function Nav({ setCategory, currency, setCurrency }) {
 
   return (
     <nav
-      id="nav"
       onClick={() => {
         if (dropdown) {
           setDropdown(!dropdown);
@@ -75,6 +74,7 @@ function Nav({ setCategory, currency, setCurrency }) {
             })}
           </div>
         </div>
+        <NavLink to={'/cart'}>Cart</NavLink>
       </div>
       <section>
         <Outlet />

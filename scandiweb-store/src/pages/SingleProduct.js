@@ -16,62 +16,91 @@ export default function SingleProduct({ currency, cart, setCart }) {
   }
 
   const product = data.product;
-  // const attributes = product.attributes;
 
   const cartProduct = {
     name: product.name,
     id: product.id,
     gallery: product.gallery,
+    description: product.description,
+    attributes: product.attributes,
+    prices: product.prices,
+    brand: product.brand,
   };
 
   function addToCart(id) {
     setCart([...cart, cartProduct]);
   }
 
-  console.log(cart);
+  const { name, id, gallery, description, attributes, prices, brand } =
+    cartProduct;
 
   return (
     <div className="product">
       <div className="image-container">
-        {product.gallery.map((image, index) => {
+        {gallery.map((image, index) => {
           return (
             <button
               key={index}
               className="img-btn"
               onClick={() => setImage(index)}
             >
-              <img key={image} src={image} alt={product.name} />
+              <img key={image} src={image} alt={name} />
             </button>
           );
         })}
       </div>
-      <img
-        className="product-image"
-        src={product.gallery[image]}
-        alt={product.name}
-      />
+      <img className="product-image" src={gallery[image]} alt={name} />
       <div className="product-content">
         <h1>
-          {product.brand} {product.name}
+          {brand} {name}
         </h1>
-        {/* {attributes.map((attribute) => {
+        {attributes &&
+          attributes.map((attribute) => {
+            const { id, name, items } = attribute;
             return (
-              <div key={attribute.id} className="attribute-container">
-                <h1>{attribute.name}</h1>
-                {attribute.items.map((item) => {
-                    return (
-                        <div className="atribute-values">
-                            <div style={ attribute.name = 'color' ? {`color: ${attribute.color}`} } className="atribute-color"></div>
-
+              <div key={id} className="attribute-container">
+                <h1>{name}:</h1>
+                <div className="items-container">
+                  {name === 'Color' &&
+                    items.map((item) => {
+                      const { displayValue, value, id } = item;
+                      return (
+                        <div key={id}>
+                          <div
+                            className="color-container"
+                            style={{ backgroundColor: `${value}` }}
+                          ></div>
+                          <p>{displayValue}</p>
                         </div>
-                    )
-                })}
+                      );
+                    })}
+                  {name !== 'Color' &&
+                    items.map((item) => {
+                      const { displayValue, id } = item;
+                      return (
+                        <div key={id}>
+                          <div className="other-att-container">
+                            <span>{displayValue}</span>
+                          </div>
+                        </div>
+                      );
+                    })}
+                </div>
               </div>
             );
-          })} */}
-        <button className="cart-btn" onClick={() => addToCart(product.id)}>
+          })}
+        <h1>Price:</h1>
+        <h1>
+          {prices[currency].amount}
+          {prices[currency].currency.symbol}
+        </h1>
+        <button className="cart-btn" onClick={() => addToCart(id)}>
           add to cart
         </button>
+        <div
+          className="description"
+          dangerouslySetInnerHTML={{ __html: description }}
+        ></div>
       </div>
     </div>
   );

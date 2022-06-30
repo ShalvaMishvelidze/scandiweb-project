@@ -13,18 +13,18 @@ export default function MainPage({ category, currency }) {
   }
   const categories = data.categories[category];
   return (
-    <>
-      <h2 className="category-name">{categories.name}</h2>
+    <main className="main">
+      <p className="category-name">{categories.name}</p>
       <div className="container">
         {categories.products.map((product) => {
           const { id, gallery, name, prices } = product;
           return (
-            <div key={id}>
+            <div className="products" key={id}>
               <Link to={`/products/${id}`}>
                 <img src={gallery[0]} alt={name} />
                 <div>
-                  <h3>{name}</h3>
-                  <p>
+                  <p className="name">{name}</p>
+                  <p className="price">
                     {prices[currency].amount}
                     {prices[currency].currency.symbol}
                   </p>
@@ -34,6 +34,6 @@ export default function MainPage({ category, currency }) {
           );
         })}
       </div>
-    </>
+    </main>
   );
 }

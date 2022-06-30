@@ -4,6 +4,8 @@ import { Routes, Route } from 'react-router-dom';
 import Nav from './pages/Nav';
 import MainPage from './pages/MainPage';
 import SingleProduct from './pages/SingleProduct';
+import Error from './pages/Error';
+import Cart from './pages/Cart';
 
 function App() {
   const [category, setCategory] = useState(0);
@@ -37,7 +39,8 @@ function App() {
               />
             }
           />
-          {/* <Route path="*" element={<Error />} /> */}
+          <Route path="/cart" element={<Cart cart={cart} />} />
+          <Route path="*" element={<Error />} />
         </Route>
       </Routes>
     </div>
