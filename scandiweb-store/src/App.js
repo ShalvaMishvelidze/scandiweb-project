@@ -8,6 +8,7 @@ import SingleProduct from './pages/SingleProduct';
 function App() {
   const [category, setCategory] = useState(0);
   const [currency, setCurrency] = useState(0);
+  const [cart, setCart] = useState([]);
 
   return (
     <div className="App">
@@ -28,7 +29,13 @@ function App() {
           />
           <Route
             path="/products/:productId"
-            element={<SingleProduct currency={currency} />}
+            element={
+              <SingleProduct
+                currency={currency}
+                cart={cart}
+                setCart={setCart}
+              />
+            }
           />
           {/* <Route path="*" element={<Error />} /> */}
         </Route>

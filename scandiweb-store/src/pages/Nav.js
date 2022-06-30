@@ -17,7 +17,14 @@ function Nav({ setCategory, currency, setCurrency }) {
   const currencies = data.currencies;
 
   return (
-    <nav>
+    <nav
+      id="nav"
+      onClick={() => {
+        if (dropdown) {
+          setDropdown(!dropdown);
+        }
+      }}
+    >
       <div className="nav">
         <div className="categories">
           {categories.map((category, index) => {
