@@ -180,13 +180,20 @@
 .items-container {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-evenly;
+  justify-content: flex-start;
 }
 
 .color-container {
   width: 2.8rem;
   height: 2.8rem;
   border: 1px black solid;
+  margin-right: 1rem;
+}
+
+.scroll-div {
+  height: 25vh;
+  overflow: hidden;
+  overflow-y: scroll;
 }
 
 .other-att-container {
@@ -195,6 +202,11 @@
   line-height: 2.8rem;
   border: 1px black solid;
   text-align: center;
+  margin-right: 1rem;
+}
+
+.description {
+  width: 19.5rem;
 }
 
 .error {

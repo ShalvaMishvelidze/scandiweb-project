@@ -34,6 +34,12 @@ export default function SingleProduct({ currency, cart, setCart }) {
   const { name, id, gallery, description, attributes, prices, brand } =
     cartProduct;
 
+  let scroll = false;
+
+  if (description.length > 248) {
+    scroll = true;
+  }
+
   return (
     <div className="product">
       <div className="image-container">
@@ -76,11 +82,11 @@ export default function SingleProduct({ currency, cart, setCart }) {
                     })}
                   {name !== 'Color' &&
                     items.map((item) => {
-                      const { displayValue, id } = item;
+                      const { value, id } = item;
                       return (
                         <div key={id}>
                           <div className="other-att-container">
-                            <span>{displayValue}</span>
+                            <span>{value}</span>
                           </div>
                         </div>
                       );
@@ -97,10 +103,14 @@ export default function SingleProduct({ currency, cart, setCart }) {
         <button className="cart-btn" onClick={() => addToCart(id)}>
           add to cart
         </button>
-        <div
-          className="description"
-          dangerouslySetInnerHTML={{ __html: description }}
-        ></div>
+        <div className={scroll ? 'scroll-bg' : undefined}>
+          <div className={scroll ? 'scroll-div' : undefined}>
+            <div
+              className="description"
+              dangerouslySetInnerHTML={{ __html: description }}
+            ></div>
+          </div>
+        </div>
       </div>
     </div>
   );
