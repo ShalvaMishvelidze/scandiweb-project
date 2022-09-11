@@ -1,10 +1,9 @@
 import React from "react";
-import useCategory from "../hooks/useCategory";
-import { Link, useParams } from "react-router-dom";
+import useIndexPageQuerry from "../hooks/useIndexPageQuerry";
+import { Link } from "react-router-dom";
 
-export default function MainPage({ currency }) {
-  const { categoryName } = useParams();
-  const { error, data, loading } = useCategory(categoryName);
+export default function IndexPage({ currency }) {
+  const { error, data, loading } = useIndexPageQuerry();
 
   if (loading) {
     return <div>loading...</div>;
@@ -18,13 +17,15 @@ export default function MainPage({ currency }) {
       <p className="category-name">{category.name}</p>
       <div className="container">
         {category.products.map((product) => {
-          const { id, gallery, name, prices } = product;
+          const { id, gallery, name, brand, prices } = product;
           return (
             <div className="products" key={id}>
               <Link to={`/products/${id}`}>
-                <img src={gallery[0]} alt={name} />
-                <div>
-                  <p className="name">{name}</p>
+                <img src={gallery[0]} alt={name} className="products-img" />
+                <div className="products-desc">
+                  <p className="name">
+                    {name} {brand}
+                  </p>
                   <p className="price">
                     {prices[currency].currency.symbol}
                     {prices[currency].amount}

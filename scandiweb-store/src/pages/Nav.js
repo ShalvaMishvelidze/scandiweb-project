@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
-import useCategories from '../hooks/useCategories';
-import { NavLink, Outlet } from 'react-router-dom';
+import React, { useState } from "react";
+import useCategories from "../hooks/useCategories";
+import { NavLink, Outlet } from "react-router-dom";
 
-function Nav({ setCategory, currency, setCurrency }) {
+function Nav({ currency, setCurrency }) {
   const [dropdown, setDropdown] = useState(false);
   const { error, data, loading } = useCategories();
 
@@ -13,8 +13,8 @@ function Nav({ setCategory, currency, setCurrency }) {
     return <h2>loading...</h2>;
   }
 
-  const categories = data.categories;
-  const currencies = data.currencies;
+  const categories = data?.categories;
+  const currencies = data?.currencies;
 
   return (
     <nav
@@ -28,19 +28,12 @@ function Nav({ setCategory, currency, setCurrency }) {
         <div className="categories">
           {categories.map((category, index) => {
             return (
-              <NavLink
-                to={'/'}
-                key={index}
-                className={({ isActive }) =>
-                  isActive ? 'link active' : 'link'
-                }
-              >
-                <button
-                  className="category-btn"
-                  onClick={() => setCategory(index)}
-                >
-                  {category.name}
-                </button>
+              <NavLink to={index === 0 ? `/` : `/${category.name}`} key={index}>
+                {({ isActive }) => (
+                  <div className={isActive ? "link active-div" : "link"}>
+                    {category.name}
+                  </div>
+                )}
               </NavLink>
             );
           })}
@@ -59,7 +52,7 @@ function Nav({ setCategory, currency, setCurrency }) {
           >
             {currencies.map((currency, index) => {
               return (
-                <button
+                <div
                   className="currency-btn"
                   key={index}
                   onClick={() => {
@@ -69,12 +62,12 @@ function Nav({ setCategory, currency, setCurrency }) {
                 >
                   {currency.symbol} {currency.label}
                   <span></span>
-                </button>
+                </div>
               );
             })}
           </div>
         </div>
-        <NavLink to={'/cart'}>Cart</NavLink>
+        <NavLink to={"/cart"}>Cart</NavLink>
       </div>
       <section>
         <Outlet />
